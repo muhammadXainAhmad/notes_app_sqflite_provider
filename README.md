@@ -15,16 +15,16 @@ A simple Notes application built using **Flutter** and **sqflite** for local sto
 
 ## 📸 Screenshots
 ### **Home Page**
-<img src="assets/homePage.png" width="300"/>
+<img src="screenshots/homePage.png" width="300"/>
 
 ### **Add Note Bottom Sheet**
-<img src="assets/addNote.png" width="300"/>
+<img src="screenshots/addNote.png" width="300"/>
 
 ### **SnackBar**
-<img src="assets/snackBar.png" width="300"/>
+<img src="screenshots/snackBar.png" width="300"/>
 
 ### **Update Note Bottom Sheet**
-<img src="assets/updateNote.png" width="300"/>
+<img src="screenshots/updateNote.png" width="300"/>
 
 ---
 ## Dependencies ⚙️
