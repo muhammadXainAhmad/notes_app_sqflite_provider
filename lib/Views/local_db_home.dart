@@ -81,14 +81,24 @@ class _MyDbHomeState extends State<MyDbHome> {
                           "${index + 1}",
                           style: TextStyle(color: MyConstants.myTxtColor),
                         ),
-                        title: Text(
-                          allNotes[index][DBHelper.COLUMN_NOTE_TITLE],
-                          style: TextStyle(
-                            color: MyConstants.myTxtColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              allNotes[index][DBHelper.COLUMN_NOTE_TITLE],
+                              style: TextStyle(
+                                color: MyConstants.myTxtColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Divider(
+                              color: MyConstants.myTxtColor,
+                              endIndent: 100,
+                            ),
+                          ],
                         ),
+
                         subtitle: Text(
                           allNotes[index][DBHelper.COLUMN_NOTE_DESC],
                           style: TextStyle(
