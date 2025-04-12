@@ -88,7 +88,10 @@ class _MyDbHomeState extends State<MyDbHome> {
                         ),
                         subtitle: Text(
                           allNotes[index][DBHelper.COLUMN_NOTE_DESC],
-                          style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
+                          style: TextStyle(
+                            color: MyConstants.myTxtColor,
+                            fontSize: 16,
+                          ),
                         ),
                         trailing: SizedBox(
                           width: 60,
@@ -115,7 +118,10 @@ class _MyDbHomeState extends State<MyDbHome> {
                                     },
                                   );
                                 },
-                                child: Icon(Icons.edit, color: MyConstants.myTxtColor),
+                                child: Icon(
+                                  Icons.edit,
+                                  color: MyConstants.myTxtColor,
+                                ),
                               ),
                               SizedBox(width: 10),
                               InkWell(
@@ -153,21 +159,43 @@ class _MyDbHomeState extends State<MyDbHome> {
 
   Widget getBottomSheetWidget({bool isUpdate = false, int sno = 0}) {
     return Container(
-      color: MyConstants.myTxtColor,
+      decoration: BoxDecoration(
+        border: Border(
+          left: BorderSide(color: MyConstants.myBtnColor, width: 2),
+          right: BorderSide(color: MyConstants.myBtnColor, width: 2),
+          top: BorderSide(color: MyConstants.myBtnColor, width: 2),
+        ),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
+        color: Colors.black,
+      ),
       padding: EdgeInsets.all(11),
       width: double.infinity,
       child: Column(
         children: [
+          SizedBox(height: 20),
           Text(
             isUpdate ? "Update Note" : "Add Note",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: MyConstants.myTxtColor,
+            ),
           ),
           SizedBox(height: 21),
           TextField(
             controller: titleController,
             decoration: InputDecoration(
+              fillColor: MyConstants.myPrimaryColor,
+              filled: true,
               hintText: "Enter title here",
-              label: Text("Title"),
+              hintStyle: TextStyle(color: MyConstants.myTxtColor),
+              label: Text(
+                "Title",
+                style: TextStyle(color: MyConstants.myTxtColor),
+              ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(11),
               ),
@@ -181,8 +209,14 @@ class _MyDbHomeState extends State<MyDbHome> {
             maxLines: 5,
             controller: descController,
             decoration: InputDecoration(
+              fillColor: MyConstants.myPrimaryColor,
+              filled: true,
               hintText: "Enter description here",
-              label: Text("Description"),
+              hintStyle: TextStyle(color: MyConstants.myTxtColor),
+              label: Text(
+                "Description",
+                style: TextStyle(color: MyConstants.myTxtColor),
+              ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(11),
               ),
@@ -243,7 +277,10 @@ class _MyDbHomeState extends State<MyDbHome> {
                     }
                     Navigator.pop(context);
                   },
-                  child: Text(isUpdate ? "Update Note" : "Add Note"),
+                  child: Text(
+                    isUpdate ? "Update Note" : "Add Note",
+                    style: TextStyle(color: MyConstants.myTxtColor),
+                  ),
                 ),
               ),
               SizedBox(width: 11),
@@ -252,13 +289,16 @@ class _MyDbHomeState extends State<MyDbHome> {
                   style: OutlinedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(11),
-                      side: BorderSide(width: 4, color: Colors.black),
+                      side: BorderSide(width: 4, color: Colors.white),
                     ),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("Cancel"),
+                  child: Text(
+                    "Cancel",
+                    style: TextStyle(color: MyConstants.myTxtColor),
+                  ),
                 ),
               ),
             ],
