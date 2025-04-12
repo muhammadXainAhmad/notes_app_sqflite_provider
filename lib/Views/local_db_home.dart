@@ -33,7 +33,10 @@ class _MyDbHomeState extends State<MyDbHome> {
       appBar: AppBar(
         backgroundColor: Colors.black12,
         centerTitle: true,
-        title: Text("NOTES", style: TextStyle(color: MyConstants.myTxtColor)),
+        title: Text(
+          "ALL NOTES",
+          style: TextStyle(color: MyConstants.myTxtColor),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: MyConstants.myPrimaryColor,
@@ -186,16 +189,14 @@ class _MyDbHomeState extends State<MyDbHome> {
           ),
           SizedBox(height: 21),
           TextField(
+            style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
             controller: titleController,
             decoration: InputDecoration(
               fillColor: MyConstants.myPrimaryColor,
               filled: true,
               hintText: "Enter title here",
               hintStyle: TextStyle(color: MyConstants.myTxtColor),
-              label: Text(
-                "Title",
-                style: TextStyle(color: MyConstants.myTxtColor),
-              ),
+
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(11),
               ),
@@ -206,17 +207,14 @@ class _MyDbHomeState extends State<MyDbHome> {
           ),
           SizedBox(height: 11),
           TextField(
+            style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
             maxLines: 5,
             controller: descController,
             decoration: InputDecoration(
               fillColor: MyConstants.myPrimaryColor,
               filled: true,
               hintText: "Enter description here",
-              hintStyle: TextStyle(color: MyConstants.myTxtColor),
-              label: Text(
-                "Description",
-                style: TextStyle(color: MyConstants.myTxtColor),
-              ),
+              hintStyle: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(11),
               ),
@@ -229,11 +227,11 @@ class _MyDbHomeState extends State<MyDbHome> {
           Row(
             children: [
               Expanded(
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: MyConstants.myBtnColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(11),
-                      side: BorderSide(width: 4, color: Colors.black),
                     ),
                   ),
                   onPressed: () async {
@@ -279,17 +277,20 @@ class _MyDbHomeState extends State<MyDbHome> {
                   },
                   child: Text(
                     isUpdate ? "Update Note" : "Add Note",
-                    style: TextStyle(color: MyConstants.myTxtColor),
+                    style: TextStyle(
+                      color: MyConstants.myTxtColor,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
               SizedBox(width: 11),
               Expanded(
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red.shade500,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(11),
-                      side: BorderSide(width: 4, color: Colors.white),
                     ),
                   ),
                   onPressed: () {
@@ -297,7 +298,10 @@ class _MyDbHomeState extends State<MyDbHome> {
                   },
                   child: Text(
                     "Cancel",
-                    style: TextStyle(color: MyConstants.myTxtColor),
+                    style: TextStyle(
+                      color: MyConstants.myTxtColor,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
