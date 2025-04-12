@@ -28,8 +28,9 @@ class _MyDbHomeState extends State<MyDbHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black12,
         centerTitle: true,
         title: Text("NOTES", style: TextStyle(color: Colors.white)),
       ),
@@ -60,51 +61,80 @@ class _MyDbHomeState extends State<MyDbHome> {
                 ? ListView.builder(
                   itemCount: allNotes.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: Text("${index + 1}"),
-                      title: Text(allNotes[index][DBHelper.COLUMN_NOTE_TITLE]),
-                      subtitle: Text(
-                        allNotes[index][DBHelper.COLUMN_NOTE_DESC],
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                        top: 8.0,
+                        bottom: 8,
+                        right: 18,
+                        left: 18,
                       ),
-                      trailing: SizedBox(
-                        width: 60,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                titleController.text =
-                                    allNotes[index][DBHelper.COLUMN_NOTE_TITLE];
-                                descController.text =
-                                    allNotes[index][DBHelper.COLUMN_NOTE_DESC];
-                                showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return getBottomSheetWidget(
-                                      isUpdate: true,
-                                      sno:
-                                          allNotes[index][DBHelper
-                                              .COLUMN_NOTE_SNO],
-                                    );
-                                  },
-                                );
-                              },
-                              child: Icon(Icons.edit),
-                            ),
-                            SizedBox(width: 10),
-                            InkWell(
-                              onTap: () async {
-                                bool check = await dbRef!.deleteNote(
-                                  sno:
-                                      allNotes[index][DBHelper.COLUMN_NOTE_SNO],
-                                );
-                                if (check) {
-                                  getNotes();
-                                }
-                              },
-                              child: Icon(Icons.delete, color: Colors.red),
-                            ),
-                          ],
+                      child: ListTile(
+                        tileColor: Colors.grey.shade800,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(26),
+                        ),
+                        leading: Text(
+                          "${index + 1}",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        title: Text(
+                          allNotes[index][DBHelper.COLUMN_NOTE_TITLE],
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        subtitle: Text(
+                          allNotes[index][DBHelper.COLUMN_NOTE_DESC],
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
+                        trailing: SizedBox(
+                          width: 60,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  titleController.text =
+                                      allNotes[index][DBHelper
+                                          .COLUMN_NOTE_TITLE];
+                                  descController.text =
+                                      allNotes[index][DBHelper
+                                          .COLUMN_NOTE_DESC];
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return getBottomSheetWidget(
+                                        isUpdate: true,
+                                        sno:
+                                            allNotes[index][DBHelper
+                                                .COLUMN_NOTE_SNO],
+                                      );
+                                    },
+                                  );
+                                },
+                                child: Icon(Icons.edit, color: Colors.white),
+                              ),
+                              SizedBox(width: 10),
+                              InkWell(
+                                onTap: () async {
+                                  bool check = await dbRef!.deleteNote(
+                                    sno:
+                                        allNotes[index][DBHelper
+                                            .COLUMN_NOTE_SNO],
+                                  );
+                                  if (check) {
+                                    getNotes();
+                                  }
+                                },
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.red.shade600,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
