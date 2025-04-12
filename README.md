@@ -1,16 +1,44 @@
-# notes_app_sqflite
+# Flutter Notes App with SQLite 📝
 
-A new Flutter project.
+A simple Notes application built using **Flutter** and **sqflite** for local storage. This project demonstrates the use of a local SQLite database in Flutter, allowing users to perform full CRUD operations: create, read, update, and delete notes.
 
-## Getting Started
+## Features 📱
 
-This project is a starting point for a Flutter application.
+- Add, view, edit, and delete notes ✍️
+- Persistent local storage using `sqflite`
+- Neat and intuitive UI
+- BottomSheet for note input
+- Singleton pattern for database helper class
+- Form validation with snackbar feedback
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📸 Screenshots
+### **Home Page**
+<img src="assets/homePage.png" width="300"/>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### **Add Note Bottom Sheet**
+<img src="assets/addNote.png" width="300"/>
+
+### **SnackBar**
+<img src="assets/snackBar.png" width="300"/>
+
+### **Update Note Bottom Sheet**
+<img src="assets/updateNote.png" width="300"/>
+
+---
+## Dependencies ⚙️
+
+This project uses the following dependencies:
+
+- `sqflite`: SQLite plugin for Flutter to store and retrieve data.
+- `path_provider`: A Flutter plugin for finding commonly used locations on the filesystem.
+- `path`: A package for working with file and directory paths.
+
+##  Tech Stack 🛠️
+- **Flutter**: Framework for building the app
+- **SQLite & sqflite**: Local database storage solution used for CRUD operations on notes
+- **Dart**: Programming language used in Flutter for the development of the app.
+- **VS Code / Android Studio**: Integrated Development Environments (IDEs) used for coding and testing the app.
+- **Git**: Version control tool for source code management.
+---
