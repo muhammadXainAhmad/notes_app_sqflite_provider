@@ -34,7 +34,8 @@ class _MyDbHomeState extends State<MyDbHome> {
         title: Text("NOTES", style: TextStyle(color: Colors.white)),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.grey.shade800,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         onPressed: () async {
           /*
           bool check =
@@ -51,7 +52,7 @@ class _MyDbHomeState extends State<MyDbHome> {
             },
           );
         },
-        child: Icon(Icons.add, color: Colors.white),
+        child: Icon(Icons.note_add_rounded, color: Colors.orange),
       ),
       body: Center(
         child:
