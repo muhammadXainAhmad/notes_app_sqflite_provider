@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app_sqflite/Views/local_db_helper.dart';
+import 'package:notes_app_sqflite/constants.dart';
 
 class MyDbHome extends StatefulWidget {
   const MyDbHome({super.key});
@@ -32,10 +33,10 @@ class _MyDbHomeState extends State<MyDbHome> {
       appBar: AppBar(
         backgroundColor: Colors.black12,
         centerTitle: true,
-        title: Text("NOTES", style: TextStyle(color: Colors.white)),
+        title: Text("NOTES", style: TextStyle(color: MyConstants.myTxtColor)),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey.shade800,
+        backgroundColor: MyConstants.myPrimaryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         onPressed: () async {
           /*
@@ -69,25 +70,25 @@ class _MyDbHomeState extends State<MyDbHome> {
                         left: 18,
                       ),
                       child: ListTile(
-                        tileColor: Colors.grey.shade800,
+                        tileColor: MyConstants.myPrimaryColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(26),
                         ),
                         leading: Text(
                           "${index + 1}",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: MyConstants.myTxtColor),
                         ),
                         title: Text(
                           allNotes[index][DBHelper.COLUMN_NOTE_TITLE],
                           style: TextStyle(
-                            color: Colors.white,
+                            color: MyConstants.myTxtColor,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         subtitle: Text(
                           allNotes[index][DBHelper.COLUMN_NOTE_DESC],
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                          style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
                         ),
                         trailing: SizedBox(
                           width: 60,
@@ -114,7 +115,7 @@ class _MyDbHomeState extends State<MyDbHome> {
                                     },
                                   );
                                 },
-                                child: Icon(Icons.edit, color: Colors.white),
+                                child: Icon(Icons.edit, color: MyConstants.myTxtColor),
                               ),
                               SizedBox(width: 10),
                               InkWell(
@@ -152,6 +153,7 @@ class _MyDbHomeState extends State<MyDbHome> {
 
   Widget getBottomSheetWidget({bool isUpdate = false, int sno = 0}) {
     return Container(
+      color: MyConstants.myTxtColor,
       padding: EdgeInsets.all(11),
       width: double.infinity,
       child: Column(
@@ -227,7 +229,7 @@ class _MyDbHomeState extends State<MyDbHome> {
                             "Please fill all the required fields!",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: MyConstants.myTxtColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
