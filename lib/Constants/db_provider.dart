@@ -15,6 +15,7 @@ class DbProvider extends ChangeNotifier {
   }
 
   List<Map<String, dynamic>> getNotes() => _mData;
+  
   void getInitialNotes() async {
     _mData = await dbHelper.getAllNotes();
     notifyListeners();

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app_sqflite/Constants/db_provider.dart';
 import 'package:notes_app_sqflite/Views/add_note_page.dart';
 import 'package:notes_app_sqflite/Constants/local_db_helper.dart';
 import 'package:notes_app_sqflite/constants.dart';
+import 'package:provider/provider.dart';
 
 class MyDbHome extends StatefulWidget {
   const MyDbHome({super.key});
@@ -11,18 +13,19 @@ class MyDbHome extends StatefulWidget {
 }
 
 class _MyDbHomeState extends State<MyDbHome> {
-  List<Map<String, dynamic>> allNotes = [];
-  DBHelper? dbRef;
+  // List<Map<String, dynamic>> allNotes = [];
+  // DBHelper? dbRef;
   @override
   void initState() {
     super.initState();
-    dbRef = DBHelper.getInstance;
-    getNotes();
+    context.read<DbProvider>().getInitialNotes();
+    // dbRef = DBHelper.getInstance;
+    // getNotes();
   }
 
   void getNotes() async {
-    allNotes = await dbRef!.getAllNotes();
-    setState(() {});
+    // allNotes = await dbRef!.getAllNotes();
+    // setState(() {});
   }
 
   @override
@@ -62,79 +65,82 @@ class _MyDbHomeState extends State<MyDbHome> {
         },
         child: Icon(Icons.note_add_rounded, color: Colors.orange),
       ),
-      body: Center(
-        child:
-            allNotes.isNotEmpty
-                ? ListView.builder(
-                  itemCount: allNotes.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8.0,
-                        bottom: 8,
-                        right: 18,
-                        left: 18,
-                      ),
-                      child: ListTile(
-                        tileColor: MyConstants.myPrimaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(26),
-                        ),
-                        leading: Text(
-                          "${index + 1}",
-                          style: TextStyle(color: MyConstants.myTxtColor),
-                        ),
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              allNotes[index][DBHelper.COLUMN_NOTE_TITLE],
+      body: Consumer<DbProvider>(
+        builder: (ctx, provider, __) {
+          List<Map<String, dynamic>> allNotes = provider.getNotes();
+          return Center(
+            child:
+                allNotes.isNotEmpty
+                    ? ListView.builder(
+                      itemCount: allNotes.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                            top: 8.0,
+                            bottom: 8,
+                            right: 18,
+                            left: 18,
+                          ),
+                          child: ListTile(
+                            tileColor: MyConstants.myPrimaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(26),
+                            ),
+                            leading: Text(
+                              "${index + 1}",
+                              style: TextStyle(color: MyConstants.myTxtColor),
+                            ),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  allNotes[index][DBHelper.COLUMN_NOTE_TITLE],
+                                  style: TextStyle(
+                                    color: MyConstants.myTxtColor,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Divider(
+                                  color: MyConstants.myTxtColor,
+                                  endIndent: 100,
+                                ),
+                              ],
+                            ),
+
+                            subtitle: Text(
+                              allNotes[index][DBHelper.COLUMN_NOTE_DESC],
                               style: TextStyle(
                                 color: MyConstants.myTxtColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
                               ),
                             ),
-                            Divider(
-                              color: MyConstants.myTxtColor,
-                              endIndent: 100,
-                            ),
-                          ],
-                        ),
-
-                        subtitle: Text(
-                          allNotes[index][DBHelper.COLUMN_NOTE_DESC],
-                          style: TextStyle(
-                            color: MyConstants.myTxtColor,
-                            fontSize: 16,
-                          ),
-                        ),
-                        trailing: SizedBox(
-                          width: 60,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder:
-                                          (context) => AddNotePage(
-                                            isUpdate: true,
-                                            sno:
-                                                allNotes[index][DBHelper
-                                                    .COLUMN_NOTE_SNO],
-                                            title:
-                                                allNotes[index][DBHelper
-                                                    .COLUMN_NOTE_TITLE],
-                                            desc:
-                                                allNotes[index][DBHelper
-                                                    .COLUMN_NOTE_DESC],
-                                          ),
-                                    ),
-                                  );
-                                  /*titleController.text =
+                            trailing: SizedBox(
+                              width: 60,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder:
+                                              (context) => AddNotePage(
+                                                isUpdate: true,
+                                                sno:
+                                                    allNotes[index][DBHelper
+                                                        .COLUMN_NOTE_SNO],
+                                                title:
+                                                    allNotes[index][DBHelper
+                                                        .COLUMN_NOTE_TITLE],
+                                                desc:
+                                                    allNotes[index][DBHelper
+                                                        .COLUMN_NOTE_DESC],
+                                              ),
+                                        ),
+                                      );
+                                      /*titleController.text =
                                       allNotes[index][DBHelper
                                           .COLUMN_NOTE_TITLE];
                                   descController.text =
@@ -151,42 +157,44 @@ class _MyDbHomeState extends State<MyDbHome> {
                                       );
                                     },
                                   );*/
-                                },
-                                child: Icon(
-                                  Icons.edit,
-                                  color: MyConstants.myTxtColor,
-                                ),
+                                    },
+                                    child: Icon(
+                                      Icons.edit,
+                                      color: MyConstants.myTxtColor,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  InkWell(
+                                    onTap: () async {
+                                      // bool check = await dbRef!.deleteNote(
+                                      //   sno:
+                                      //       allNotes[index][DBHelper
+                                      //           .COLUMN_NOTE_SNO],
+                                      // );
+                                      // if (check) {
+                                      //   getNotes();
+                                      // }
+                                    },
+                                    child: Icon(
+                                      Icons.delete,
+                                      color: Colors.red.shade600,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(width: 10),
-                              InkWell(
-                                onTap: () async {
-                                  bool check = await dbRef!.deleteNote(
-                                    sno:
-                                        allNotes[index][DBHelper
-                                            .COLUMN_NOTE_SNO],
-                                  );
-                                  if (check) {
-                                    getNotes();
-                                  }
-                                },
-                                child: Icon(
-                                  Icons.delete,
-                                  color: Colors.red.shade600,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
+                        );
+                      },
+                    )
+                    : Center(
+                      child: Text(
+                        "NO NOTES YET!",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
                       ),
-                    );
-                  },
-                )
-                : Center(
-                  child: Text(
-                    "NO NOTES YET!",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                ),
+                    ),
+          );
+        },
       ),
     );
   }
