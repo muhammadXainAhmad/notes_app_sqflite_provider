@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 class AddNotePage extends StatelessWidget {
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
-  // DBHelper? dbRef = DBHelper.getInstance;
   bool isUpdate;
   String title;
   String desc;
@@ -42,18 +41,6 @@ class AddNotePage extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white, size: 30),
       ),
       body: Container(
-        /*decoration: BoxDecoration(
-          border: Border(
-            left: BorderSide(color: MyConstants.myBtnColor, width: 2),
-            right: BorderSide(color: MyConstants.myBtnColor, width: 2),
-            top: BorderSide(color: MyConstants.myBtnColor, width: 2),
-          ),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
-          ),
-          color: Colors.black,
-        ),*/
         padding: EdgeInsets.all(11),
         width: double.infinity,
         child: Column(
@@ -122,22 +109,6 @@ class AddNotePage extends StatelessWidget {
                           context.read<DbProvider>().addNote(title, desc);
                         }
                         Navigator.of(context).pop();
-                        // bool check =
-                        //     isUpdate
-                        //         ? await dbRef!.updateNotes(
-                        //           title: title,
-                        //           desc: desc,
-                        //           sno: sno,
-                        //         )
-                        //         : await dbRef!.addNote(
-                        //           mTitle: title,
-                        //           mDesc: desc,
-                        //         );
-                        // if (check) {
-                        //   Navigator.of(context).pop();
-                        // }
-                        // titleController.clear();
-                        // descController.clear();
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

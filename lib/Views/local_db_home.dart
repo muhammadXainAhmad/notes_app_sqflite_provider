@@ -13,19 +13,10 @@ class MyDbHome extends StatefulWidget {
 }
 
 class _MyDbHomeState extends State<MyDbHome> {
-  // List<Map<String, dynamic>> allNotes = [];
-  // DBHelper? dbRef;
   @override
   void initState() {
     super.initState();
     context.read<DbProvider>().getInitialNotes();
-    // dbRef = DBHelper.getInstance;
-    // getNotes();
-  }
-
-  void getNotes() async {
-    // allNotes = await dbRef!.getAllNotes();
-    // setState(() {});
   }
 
   @override
@@ -48,20 +39,6 @@ class _MyDbHomeState extends State<MyDbHome> {
             context,
             MaterialPageRoute(builder: (context) => AddNotePage()),
           );
-          /*
-          bool check =
-              await dbRef!.addNote(mTitle: "xainNote", mDesc: "xainNoteDesc");
-          if (check) {
-            getNotes();
-          }*/
-          // showModalBottomSheet(
-          //   context: context,
-          //   builder: (context) {
-          //     titleController.clear();
-          //     descController.clear();
-          //     return getBottomSheetWidget();
-          //   },
-          // );
         },
         child: Icon(Icons.note_add_rounded, color: Colors.orange),
       ),
@@ -140,23 +117,6 @@ class _MyDbHomeState extends State<MyDbHome> {
                                               ),
                                         ),
                                       );
-                                      /*titleController.text =
-                                      allNotes[index][DBHelper
-                                          .COLUMN_NOTE_TITLE];
-                                  descController.text =
-                                      allNotes[index][DBHelper
-                                          .COLUMN_NOTE_DESC];
-                                  showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return getBottomSheetWidget(
-                                        isUpdate: true,
-                                        sno:
-                                            allNotes[index][DBHelper
-                                                .COLUMN_NOTE_SNO],
-                                      );
-                                    },
-                                  );*/
                                     },
                                     child: Icon(
                                       Icons.edit,
@@ -167,16 +127,9 @@ class _MyDbHomeState extends State<MyDbHome> {
                                   InkWell(
                                     onTap: () async {
                                       context.read<DbProvider>().deleteNote(
-                                        allNotes[index][DBHelper.COLUMN_NOTE_SNO]
+                                        allNotes[index][DBHelper
+                                            .COLUMN_NOTE_SNO],
                                       );
-                                      // bool check = await dbRef!.deleteNote(
-                                      //   sno:
-                                      //       allNotes[index][DBHelper
-                                      //           .COLUMN_NOTE_SNO],
-                                      // );
-                                      // if (check) {
-                                      //   getNotes();
-                                      // }
                                     },
                                     child: Icon(
                                       Icons.delete,
@@ -201,156 +154,4 @@ class _MyDbHomeState extends State<MyDbHome> {
       ),
     );
   }
-
-  // Widget getBottomSheetWidget({bool isUpdate = false, int sno = 0}) {
-  //   return Container(
-  //     decoration: BoxDecoration(
-  //       border: Border(
-  //         left: BorderSide(color: MyConstants.myBtnColor, width: 2),
-  //         right: BorderSide(color: MyConstants.myBtnColor, width: 2),
-  //         top: BorderSide(color: MyConstants.myBtnColor, width: 2),
-  //       ),
-  //       borderRadius: BorderRadius.only(
-  //         topLeft: Radius.circular(25),
-  //         topRight: Radius.circular(25),
-  //       ),
-  //       color: Colors.black,
-  //     ),
-  //     padding: EdgeInsets.all(11),
-  //     width: double.infinity,
-  //     child: Column(
-  //       children: [
-  //         SizedBox(height: 20),
-  //         Text(
-  //           isUpdate ? "Update Note" : "Add Note",
-  //           style: TextStyle(
-  //             fontSize: 25,
-  //             fontWeight: FontWeight.bold,
-  //             color: MyConstants.myTxtColor,
-  //           ),
-  //         ),
-  //         SizedBox(height: 21),
-  //         TextField(
-  //           style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
-  //           controller: titleController,
-  //           decoration: InputDecoration(
-  //             fillColor: MyConstants.myPrimaryColor,
-  //             filled: true,
-  //             hintText: "Enter title here",
-  //             hintStyle: TextStyle(color: MyConstants.myTxtColor),
-
-  //             enabledBorder: OutlineInputBorder(
-  //               borderRadius: BorderRadius.circular(11),
-  //             ),
-  //             focusedBorder: OutlineInputBorder(
-  //               borderRadius: BorderRadius.circular(11),
-  //             ),
-  //           ),
-  //         ),
-  //         SizedBox(height: 11),
-  //         TextField(
-  //           style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
-  //           maxLines: 5,
-  //           controller: descController,
-  //           decoration: InputDecoration(
-  //             fillColor: MyConstants.myPrimaryColor,
-  //             filled: true,
-  //             hintText: "Enter description here",
-  //             hintStyle: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
-  //             enabledBorder: OutlineInputBorder(
-  //               borderRadius: BorderRadius.circular(11),
-  //             ),
-  //             focusedBorder: OutlineInputBorder(
-  //               borderRadius: BorderRadius.circular(11),
-  //             ),
-  //           ),
-  //         ),
-  //         SizedBox(height: 11),
-  //         Row(
-  //           children: [
-  //             Expanded(
-  //               child: ElevatedButton(
-  //                 style: ElevatedButton.styleFrom(
-  //                   backgroundColor: MyConstants.myBtnColor,
-  //                   shape: RoundedRectangleBorder(
-  //                     borderRadius: BorderRadius.circular(11),
-  //                   ),
-  //                 ),
-  //                 onPressed: () async {
-  //                   var title = titleController.text;
-  //                   var desc = descController.text;
-  //                   if (title.isNotEmpty && desc.isNotEmpty) {
-  //                     bool check =
-  //                         isUpdate
-  //                             ? await dbRef!.updateNotes(
-  //                               title: title,
-  //                               desc: desc,
-  //                               sno: sno,
-  //                             )
-  //                             : await dbRef!.addNote(
-  //                               mTitle: title,
-  //                               mDesc: desc,
-  //                             );
-  //                     if (check) {
-  //                       getNotes();
-  //                     }
-  //                     titleController.clear();
-  //                     descController.clear();
-  //                   } else {
-  //                     ScaffoldMessenger.of(context).showSnackBar(
-  //                       SnackBar(
-  //                         content: Text(
-  //                           "Please fill all the required fields!",
-  //                           textAlign: TextAlign.center,
-  //                           style: TextStyle(
-  //                             color: MyConstants.myTxtColor,
-  //                             fontWeight: FontWeight.bold,
-  //                           ),
-  //                         ),
-  //                         backgroundColor: Colors.red,
-  //                         behavior: SnackBarBehavior.floating,
-  //                         shape: RoundedRectangleBorder(
-  //                           borderRadius: BorderRadius.circular(11),
-  //                         ),
-  //                       ),
-  //                     );
-  //                   }
-  //                   Navigator.pop(context);
-  //                 },
-  //                 child: Text(
-  //                   isUpdate ? "Update Note" : "Add Note",
-  //                   style: TextStyle(
-  //                     color: MyConstants.myTxtColor,
-  //                     fontSize: 16,
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             SizedBox(width: 11),
-  //             Expanded(
-  //               child: ElevatedButton(
-  //                 style: ElevatedButton.styleFrom(
-  //                   backgroundColor: Colors.red.shade500,
-  //                   shape: RoundedRectangleBorder(
-  //                     borderRadius: BorderRadius.circular(11),
-  //                   ),
-  //                 ),
-  //                 onPressed: () {
-  //                   Navigator.pop(context);
-  //                 },
-  //                 child: Text(
-  //                   "Cancel",
-  //                   style: TextStyle(
-  //                     color: MyConstants.myTxtColor,
-  //                     fontSize: 16,
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 }
