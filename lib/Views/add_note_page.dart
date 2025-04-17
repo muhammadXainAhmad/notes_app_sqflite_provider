@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app_sqflite/Constants/local_db_helper.dart';
+import 'package:notes_app_sqflite/Constants/db_provider.dart';
 import 'package:notes_app_sqflite/constants.dart';
+import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class AddNotePage extends StatelessWidget {
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
-  DBHelper? dbRef = DBHelper.getInstance;
+  // DBHelper? dbRef = DBHelper.getInstance;
   bool isUpdate;
   String title;
   String desc;
   int sno;
   AddNotePage({
+    super.key,
     this.isUpdate = false,
     this.sno = 0,
     this.title = "",
@@ -109,22 +112,32 @@ class AddNotePage extends StatelessWidget {
                       var title = titleController.text;
                       var desc = descController.text;
                       if (title.isNotEmpty && desc.isNotEmpty) {
-                        bool check =
-                            isUpdate
-                                ? await dbRef!.updateNotes(
-                                  title: title,
-                                  desc: desc,
-                                  sno: sno,
-                                )
-                                : await dbRef!.addNote(
-                                  mTitle: title,
-                                  mDesc: desc,
-                                );
-                        if (check) {
-                          Navigator.of(context).pop();
+                        if (isUpdate) {
+                          context.read<DbProvider>().updateNotes(
+                            title,
+                            desc,
+                            sno,
+                          );
+                        } else {
+                          context.read<DbProvider>().addNote(title, desc);
                         }
-                        titleController.clear();
-                        descController.clear();
+                        Navigator.of(context).pop();
+                        // bool check =
+                        //     isUpdate
+                        //         ? await dbRef!.updateNotes(
+                        //           title: title,
+                        //           desc: desc,
+                        //           sno: sno,
+                        //         )
+                        //         : await dbRef!.addNote(
+                        //           mTitle: title,
+                        //           mDesc: desc,
+                        //         );
+                        // if (check) {
+                        //   Navigator.of(context).pop();
+                        // }
+                        // titleController.clear();
+                        // descController.clear();
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

@@ -14,8 +14,16 @@ class DbProvider extends ChangeNotifier {
     }
   }
 
+  void updateNotes(String title, String desc, int sno) async {
+    bool check = await dbHelper.updateNotes(title: title, desc: desc, sno: sno);
+    if (check) {
+      await dbHelper.getAllNotes();
+      notifyListeners();
+    }
+  }
+
   List<Map<String, dynamic>> getNotes() => _mData;
-  
+
   void getInitialNotes() async {
     _mData = await dbHelper.getAllNotes();
     notifyListeners();
