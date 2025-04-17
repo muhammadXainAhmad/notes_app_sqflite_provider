@@ -8,7 +8,6 @@ A simple Notes application built using **Flutter** and **sqflite** for local sto
 - Persistent local storage using `sqflite`
 - Neat and intuitive UI
 - BottomSheet for note input
-- Singleton pattern for database helper class
 - Form validation with snackbar feedback
 
 ---
