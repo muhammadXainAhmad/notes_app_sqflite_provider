@@ -19,15 +19,27 @@ class AddNotePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (isUpdate) {
+      titleController.text = title;
+      descController.text = desc;
+    }
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
+        centerTitle: true,
         title: Text(
-          "Add Note",
-          style: TextStyle(color: MyConstants.myTxtColor),
+          isUpdate ? "Update Note" : "Add Note",
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: MyConstants.myTxtColor,
+          ),
         ),
+        iconTheme: const IconThemeData(color: Colors.white, size: 30),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        /*decoration: BoxDecoration(
           border: Border(
             left: BorderSide(color: MyConstants.myBtnColor, width: 2),
             right: BorderSide(color: MyConstants.myBtnColor, width: 2),
@@ -38,21 +50,12 @@ class AddNotePage extends StatelessWidget {
             topRight: Radius.circular(25),
           ),
           color: Colors.black,
-        ),
+        ),*/
         padding: EdgeInsets.all(11),
         width: double.infinity,
         child: Column(
           children: [
             SizedBox(height: 20),
-            Text(
-              isUpdate ? "Update Note" : "Add Note",
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-                color: MyConstants.myTxtColor,
-              ),
-            ),
-            SizedBox(height: 21),
             TextField(
               style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
               controller: titleController,

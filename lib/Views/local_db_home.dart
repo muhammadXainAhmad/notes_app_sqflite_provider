@@ -30,7 +30,7 @@ class _MyDbHomeState extends State<MyDbHome> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.black,
         centerTitle: true,
         title: Text(
           "ALL NOTES",
