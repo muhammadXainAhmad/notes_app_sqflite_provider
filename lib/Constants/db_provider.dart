@@ -9,7 +9,7 @@ class DbProvider extends ChangeNotifier {
   void addNote(String title, String desc) async {
     bool check = await dbHelper.addNote(mTitle: title, mDesc: desc);
     if (check) {
-      await dbHelper.getAllNotes();
+      _mData = await dbHelper.getAllNotes();
       notifyListeners();
     }
   }
@@ -17,7 +17,15 @@ class DbProvider extends ChangeNotifier {
   void updateNotes(String title, String desc, int sno) async {
     bool check = await dbHelper.updateNotes(title: title, desc: desc, sno: sno);
     if (check) {
-      await dbHelper.getAllNotes();
+      _mData = await dbHelper.getAllNotes();
+      notifyListeners();
+    }
+  }
+
+  void deleteNote(int sno) async {
+    bool check = await dbHelper.deleteNote(sno: sno);
+    if (check) {
+      _mData = await dbHelper.getAllNotes();
       notifyListeners();
     }
   }

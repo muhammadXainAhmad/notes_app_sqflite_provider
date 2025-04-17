@@ -166,6 +166,9 @@ class _MyDbHomeState extends State<MyDbHome> {
                                   SizedBox(width: 10),
                                   InkWell(
                                     onTap: () async {
+                                      context.read<DbProvider>().deleteNote(
+                                        allNotes[index][DBHelper.COLUMN_NOTE_SNO]
+                                      );
                                       // bool check = await dbRef!.deleteNote(
                                       //   sno:
                                       //       allNotes[index][DBHelper
