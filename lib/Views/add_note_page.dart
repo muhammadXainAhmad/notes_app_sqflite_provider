@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app_sqflite/Constants/db_provider.dart';
-import 'package:notes_app_sqflite/constants.dart';
+import 'package:notes_app_sqflite_provider/Constants/db_provider.dart';
+import 'package:notes_app_sqflite_provider/constants.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app_sqflite/Constants/db_provider.dart';
-import 'package:notes_app_sqflite/Constants/local_db_helper.dart';
-import 'package:notes_app_sqflite/Views/local_db_home.dart';
+import 'package:notes_app_sqflite_provider/Constants/db_provider.dart';
+import 'package:notes_app_sqflite_provider/Constants/local_db_helper.dart';
+import 'package:notes_app_sqflite_provider/Views/local_db_home.dart';
 import 'package:provider/provider.dart';
 
 void main() {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app_sqflite/Constants/local_db_helper.dart';
+import 'package:notes_app_sqflite_provider/Constants/local_db_helper.dart';
 
 class DbProvider extends ChangeNotifier {
   List<Map<String, dynamic>> _mData = [];
