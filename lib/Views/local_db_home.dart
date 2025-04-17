@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app_sqflite/Views/add_note_page.dart';
-import 'package:notes_app_sqflite/Views/local_db_helper.dart';
+import 'package:notes_app_sqflite/Constants/local_db_helper.dart';
 import 'package:notes_app_sqflite/constants.dart';
 
 class MyDbHome extends StatefulWidget {

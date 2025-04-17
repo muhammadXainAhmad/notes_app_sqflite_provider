@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app_sqflite/Views/local_db_helper.dart';
+import 'package:notes_app_sqflite/Constants/local_db_helper.dart';
 import 'package:notes_app_sqflite/constants.dart';
 
 class AddNotePage extends StatelessWidget {
