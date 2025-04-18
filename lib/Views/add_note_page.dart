@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_app_sqflite_provider/Constants/db_provider.dart';
-import 'package:notes_app_sqflite_provider/constants.dart';
+import 'package:notes_app_sqflite_provider/Constants/constants.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -25,143 +25,160 @@ class AddNotePage extends StatelessWidget {
       titleController.text = title;
       descController.text = desc;
     }
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
         backgroundColor: Colors.black,
-        centerTitle: true,
-        title: Text(
-          isUpdate ? "Update Note" : "Add Note",
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            color: MyConstants.myTxtColor,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          centerTitle: true,
+          title: Text(
+            isUpdate ? "Update Note" : "Add Note",
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: MyConstants.myTxtColor,
+            ),
           ),
+          iconTheme: const IconThemeData(color: Colors.white, size: 30),
         ),
-        iconTheme: const IconThemeData(color: Colors.white, size: 30),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(11),
-        width: double.infinity,
-        child: Column(
-          children: [
-            SizedBox(height: 20),
-            TextField(
-              style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
-              controller: titleController,
-              decoration: InputDecoration(
-                fillColor: MyConstants.myPrimaryColor,
-                filled: true,
-                hintText: "Enter title here",
-                hintStyle: TextStyle(color: MyConstants.myTxtColor),
+        body: Container(
+          padding: EdgeInsets.all(11),
+          width: double.infinity,
+          child: Column(
+            children: [
+              SizedBox(height: 20),
+              TextField(
+                style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
+                controller: titleController,
+                decoration: InputDecoration(
+                  fillColor: MyConstants.myPrimaryColor,
+                  filled: true,
+                  hintText: "Enter title here",
+                  hintStyle: TextStyle(
+                    color: MyConstants.myTxtColor,
+                    fontWeight: FontWeight.bold,
+                  ),
 
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(11),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(11),
-                ),
-              ),
-            ),
-            SizedBox(height: 11),
-            TextField(
-              style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
-              maxLines: 5,
-              controller: descController,
-              decoration: InputDecoration(
-                fillColor: MyConstants.myPrimaryColor,
-                filled: true,
-                hintText: "Enter description here",
-                hintStyle: TextStyle(
-                  color: MyConstants.myTxtColor,
-                  fontSize: 16,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(11),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(11),
-                ),
-              ),
-            ),
-            SizedBox(height: 11),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: MyConstants.myBtnColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(11),
-                      ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: MyConstants.myBtnColor,
+                      width: 2,
                     ),
-                    onPressed: () async {
-                      var title = titleController.text;
-                      var desc = descController.text;
-                      if (title.isNotEmpty && desc.isNotEmpty) {
-                        if (isUpdate) {
-                          context.read<DbProvider>().updateNotes(
-                            title,
-                            desc,
-                            sno,
-                          );
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                ),
+              ),
+              SizedBox(height: 11),
+              TextField(
+                style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
+                maxLines: 5,
+                controller: descController,
+                decoration: InputDecoration(
+                  fillColor: MyConstants.myPrimaryColor,
+                  filled: true,
+                  hintText: "Enter description here",
+                  hintStyle: TextStyle(
+                    color: MyConstants.myTxtColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: MyConstants.myBtnColor,
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                ),
+              ),
+              SizedBox(height: 11),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: MyConstants.myBtnColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(11),
+                        ),
+                      ),
+                      onPressed: () async {
+                        var title = titleController.text;
+                        var desc = descController.text;
+                        if (title.isNotEmpty && desc.isNotEmpty) {
+                          if (isUpdate) {
+                            context.read<DbProvider>().updateNotes(
+                              title,
+                              desc,
+                              sno,
+                            );
+                          } else {
+                            context.read<DbProvider>().addNote(title, desc);
+                          }
+                          Navigator.of(context).pop();
                         } else {
-                          context.read<DbProvider>().addNote(title, desc);
-                        }
-                        Navigator.of(context).pop();
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              "Please fill all the required fields!",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: MyConstants.myTxtColor,
-                                fontWeight: FontWeight.bold,
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "Please fill all the required fields!",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: MyConstants.myTxtColor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              backgroundColor: Colors.red,
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(11),
                               ),
                             ),
-                            backgroundColor: Colors.red,
-                            behavior: SnackBarBehavior.floating,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(11),
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    child: Text(
-                      isUpdate ? "Update Note" : "Add Note",
-                      style: TextStyle(
-                        color: MyConstants.myTxtColor,
-                        fontSize: 16,
+                          );
+                        }
+                      },
+                      child: Text(
+                        isUpdate ? "Update Note" : "Add Note",
+                        style: TextStyle(
+                          color: MyConstants.myTxtColor,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(width: 11),
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red.shade500,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(11),
+                  SizedBox(width: 11),
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red.shade500,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(11),
+                        ),
                       ),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Cancel",
-                      style: TextStyle(
-                        color: MyConstants.myTxtColor,
-                        fontSize: 16,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(
+                          color: MyConstants.myTxtColor,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
