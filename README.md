@@ -38,7 +38,6 @@ A clean and efficient Notes application built using **Flutter**, **Provider**, a
 > Edit your existing notes with updated content and save changes instantly.
 <p>
 <img src="screenshots/updatePage1.png" width="300"/>
-<img src="screenshots/updatePage2.png" width="300"/>
 <p>
 
 ### **Settings Page**
