@@ -30,19 +30,15 @@ class AddNotePage extends StatelessWidget {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        backgroundColor: Colors.black,
         appBar: AppBar(
-          backgroundColor: Colors.black,
           centerTitle: true,
           title: Text(
             isUpdate ? "Update Note" : "Add Note",
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.bold,
-              color: MyConstants.myTxtColor,
             ),
           ),
-          iconTheme: const IconThemeData(color: Colors.white, size: 30),
         ),
         body: Container(
           padding: EdgeInsets.all(11),
@@ -77,7 +73,7 @@ class AddNotePage extends StatelessWidget {
               SizedBox(height: 11),
               TextField(
                 style: TextStyle(color: MyConstants.myTxtColor, fontSize: 16),
-                maxLines: 5,
+                maxLines: 10,
                 controller: descController,
                 decoration: InputDecoration(
                   fillColor: MyConstants.myPrimaryColor,
@@ -132,7 +128,6 @@ class AddNotePage extends StatelessWidget {
                                 "Please fill all the required fields!",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: MyConstants.myTxtColor,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
