@@ -23,13 +23,10 @@ class _MyDbHomeState extends State<MyDbHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
         centerTitle: true,
         title: Text(
           "ALL NOTES",
-          style: TextStyle(color: MyConstants.myTxtColor),
         ),
         actions: [
           InkWell(
@@ -40,7 +37,6 @@ class _MyDbHomeState extends State<MyDbHome> {
             },
             child: Icon(
               Icons.settings,
-              color: MyConstants.myTxtColor,
               size: 28,
             ),
           ),
@@ -166,7 +162,6 @@ class _MyDbHomeState extends State<MyDbHome> {
                           Text(
                             "No Notes",
                             style: TextStyle(
-                              color: MyConstants.myTxtColor,
                               fontSize: 20,
                             ),
                           ),
@@ -174,7 +169,6 @@ class _MyDbHomeState extends State<MyDbHome> {
                           Text(
                             "Tap the Add button to create a note.",
                             style: TextStyle(
-                              color: MyConstants.myTxtColor,
                               fontSize: 18,
                             ),
                           ),
