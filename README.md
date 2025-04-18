@@ -27,12 +27,15 @@ A clean and efficient Notes application built using **Flutter**, **Provider**, a
 <p>
 
 ### **Add Note Page**
+Users can write and save new notes via this screen.
 <img src="screenshots/addPage.png" width="300"/>
 
 ### **SnackBar**
+Displays validation feedback when required fields are left empty during note creation or update.
 <img src="screenshots/snackBar.png" width="300"/>
 
 ### **Update Note Page**
+Edit your existing notes with updated content and save changes instantly.
 <p>
 <img src="screenshots/updatePage1.png" width="300"/>
 <img src="screenshots/updatePage2.png" width="300"/>
@@ -46,10 +49,10 @@ A clean and efficient Notes application built using **Flutter**, **Provider**, a
 
 > Toggling off dark mode from the Settings page switches the app to light mode, as shown below.
 
-### **Home Page (in Light Mode)**
+### **Home Page (Light Theme)**
 <img src="screenshots/homePage3.png" width="300"/>
 
-### **Update Note Page (in Light Mode)**
+### **Update Note Page (Light Theme)**
 <img src="screenshots/updatePage2.png" width="300"/>
 
 ---
