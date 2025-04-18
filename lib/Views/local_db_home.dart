@@ -3,6 +3,7 @@ import 'package:notes_app_sqflite_provider/Constants/db_provider.dart';
 import 'package:notes_app_sqflite_provider/Views/add_note_page.dart';
 import 'package:notes_app_sqflite_provider/Constants/local_db_helper.dart';
 import 'package:notes_app_sqflite_provider/Constants/constants.dart';
+import 'package:notes_app_sqflite_provider/Views/settings_page.dart';
 import 'package:provider/provider.dart';
 
 class MyDbHome extends StatefulWidget {
@@ -30,6 +31,21 @@ class _MyDbHomeState extends State<MyDbHome> {
           "ALL NOTES",
           style: TextStyle(color: MyConstants.myTxtColor),
         ),
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => SettingsPage()));
+            },
+            child: Icon(
+              Icons.settings,
+              color: MyConstants.myTxtColor,
+              size: 28,
+            ),
+          ),
+          SizedBox(width: 25),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: MyConstants.myPrimaryColor,
