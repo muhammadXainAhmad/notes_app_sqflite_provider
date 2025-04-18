@@ -20,16 +20,37 @@ A clean and efficient Notes application built using **Flutter**, **Provider**, a
 
 ## 📸 Screenshots
 ### **Home Page**
-<img src="screenshots/homePage.png" width="300"/>
+<p>
+<img src="screenshots/homePage1.png" width="300"/>
+<img src="screenshots/homePage2.png" width="300"/>
 
-### **Add Note Bottom Sheet**
-<img src="screenshots/addNote.png" width="300"/>
+<p>
+
+### **Add Note Page**
+<img src="screenshots/addPage.png" width="300"/>
 
 ### **SnackBar**
 <img src="screenshots/snackBar.png" width="300"/>
 
-### **Update Note Bottom Sheet**
-<img src="screenshots/updateNote.png" width="300"/>
+### **Update Note Page**
+<p>
+<img src="screenshots/updatePage1.png" width="300"/>
+<img src="screenshots/updatePage2.png" width="300"/>
+<p>
+
+### **Settings Page**
+<p>
+<img src="screenshots/settingsPage1.png" width="300"/>
+<img src="screenshots/settingsPage2.png" width="300"/>
+<p>
+
+> Toggling off dark mode from the Settings page switches the app to light mode, as shown below.
+
+### **Home Page (in Light Mode)**
+<img src="screenshots/homePage3.png" width="300"/>
+
+### **Update Note Page (in Light Mode)**
+<img src="screenshots/updatePage2.png" width="300"/>
 
 ---
 
